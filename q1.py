@@ -1,5 +1,6 @@
 import numpy as np
-from scipy.cluster.hierarchy import dendrogram, linkage
+from scipy.cluster.hierarchy import dendrogram, linkage, cophenet
+from scipy.spatial.distance import pdist
 from matplotlib import pyplot as plt
 
 arq = open('paises.txt', 'r')
@@ -38,6 +39,9 @@ for linha in texto[:-2]:
     c= Cluster(linha.split(' ')[1:], linha.split(' ')[0])
     cluters.append(c)
 
+media= np.array(texto[-2].split(' ')[1:], dtype=float)
+
+R= []
 while len(cluters)>1:
     min_dis= 999999
     a= Cluster([], "")
@@ -48,11 +52,24 @@ while len(cluters)>1:
                 min_dis= ci.distance(cl)
                 a= ci
                 b= cl
-    print(a, " Com ", b)
+    #print(a, " Com ", b)
     a.add(b)
     cluters.remove(b)
 
+    SSB = 0
+    SST = 0
+    for ci in cluters:
+        SSB += ci.elements.shape[0] * np.sum((ci.centroid() - media)**2)
+    for ci in cluters:
+        for x in ci.elements:
+            SST += np.sum((x - ci.centroid()) ** 2)
+    R.append(SSB/SST)
+    #print(SSB, SST, R[-1])
 
+
+plt.plot(np.arange(len(R))+1, R)
+plt.xticks(np.arange(len(R))+1)
+#plt.show()
 def teste():
     x= []
     y= []
@@ -65,6 +82,10 @@ def teste():
     Z = linkage(x, 'ward')
     fig = plt.figure(figsize=(25, 10))
     dn = dendrogram(Z, labels=y)
+
+    #fig = plt.figure()
+    #knee = np.diff(Z[::-1, 2], 2)
+    #plt.plot(range(2, len(Z)), knee)
     plt.show()
 
 teste()
