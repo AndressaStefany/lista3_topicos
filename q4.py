@@ -49,15 +49,13 @@ print('\n Matriz de autovetores Transposta:')
 print(vT)
 
 # Multiplicar vT * [x1,x2,x3,x4]
-# sao 4 valores de Y na verdade
-a = vT[0][0]*vT[1][0]*vT[2][0]*vT[3][0]
-b = vT[0][1]*vT[1][1]*vT[2][1]*vT[3][1]
-c = vT[0][2]*vT[1][2]*vT[2][2]*vT[3][2]
-d = vT[0][3]*vT[1][3]*vT[2][3]*vT[3][3]
 
-string = 'Y = '+str(a)+'x1 + '+str(b)+' x2 + '+str(c)+' x3 + '+str(d)+' x4'
-print('\n (c)')
-print(string)
+string1 = 'Y_1 = '+str(vT[0][0])+' x1 + '+str(vT[0][1])+' x2 + '+str(vT[0][2])+' x3 + '+str(vT[0][3])+' x4'
+string2 = 'Y_2 = '+str(vT[1][0])+' x1 + '+str(vT[1][1])+' x2 + '+str(vT[1][2])+' x3 + '+str(vT[1][3])+' x4'
+string3 = 'Y_3 = '+str(vT[2][0])+' x1 + '+str(vT[2][1])+' x2 + '+str(vT[2][2])+' x3 + '+str(vT[2][3])+' x4'
+string4 = 'Y_4 = '+str(vT[3][0])+' x1 + '+str(vT[3][1])+' x2 + '+str(vT[3][2])+' x3 + '+str(vT[3][3])+' x4'
+
+print('\n (c)\n'+string1+'\n'+string2+'\n'+string3+'\n'+string4)
 
 # letra (d)
 variancia = w/np.sum(w)
