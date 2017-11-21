@@ -34,13 +34,15 @@ def load_file(name):
     texto = arq.readlines()
     arq.close()
     clusters= []
+    mean= np.array(texto[-2].split(' ')[1:], dtype=float)
+    std= np.array(texto[-1].split(' ')[1:], dtype=float)
     for linha in texto[:-2]:
-        c= Cluster(linha.split(' ')[1:], linha.split(' ')[0])
+        c_= (np.array(linha.split(' ')[1:],dtype=float)-mean)/std
+        c= Cluster(c_, linha.split(' ')[0])
         clusters.append(c)
 
-    media= np.array(texto[-2].split(' ')[1:], dtype=float)
 
-    return clusters, media
+    return clusters, mean, std
 
 def computeClusters(clusters, media):
     R = []
@@ -57,13 +59,13 @@ def computeClusters(clusters, media):
                     a = ci
                     b = cl
 
+        print(a, " com ", b)
         a.add(b)
         clusters.remove(b)
 
         str= ''
         for ci in clusters:
             str+=ci.__str__()+", "
-        print(str)
 
         SSB = 0
         SST = 0
@@ -75,6 +77,8 @@ def computeClusters(clusters, media):
         R.append(SSB / SST)
         # print(SSB, SST, R[-1])
 
+
+        # rever esse indice
         pstMax= 0
 
         for ci in clusters:
@@ -108,6 +112,8 @@ def scypi_ver():
         y.append(linha.split(' ')[0])
 
     x= np.array(x, dtype=float)
+    x = x - x.mean(axis=0)
+    x = x / x.std(axis=0)
     Z = linkage(x, 'ward')
     fig = plt.figure(figsize=(25, 10))
     dn = dendrogram(Z, labels=y)
@@ -116,7 +122,7 @@ def scypi_ver():
     #knee = np.diff(Z[::-1, 2], 2)
     #plt.plot(range(2, len(Z)), knee)
 
-clusters, media= load_file('paises.txt')
+clusters, media, desv= load_file('paises.txt')
 R, PST2= computeClusters(clusters, media)
 
 x_= np.arange(len(R))+1

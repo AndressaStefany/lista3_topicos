@@ -12,6 +12,8 @@ for linha in texto[:-2]:
     y.append(linha.split(' ')[0])
 
 x= np.array(x, dtype=float)
+x = x - x.mean(axis=0)
+x = x / x.std(axis=0)
 
 kmeans = KMeans(n_clusters=3, random_state=0).fit(x)
 

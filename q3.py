@@ -1,6 +1,7 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
+import time
 
 class SOM:
     def __init__(self, l, c, n):
@@ -9,29 +10,17 @@ class SOM:
         self.n= n
         self.eta= 0.01
         self.sigma= 4
-        self.nInterations= 1000
-        self.W= [[[]]]
+        self.nInterations= 2000
         self.initW()
 
     def initW(self):
         self.W= np.random.random((self.l, self.c, self.n))
+        self.ij = np.array(np.meshgrid(np.arange(self.l), np.arange(self.c))).T.reshape(-1, 2)
 
     def winner(self, x):
         s = np.sum((self.W - x) ** 2, axis=2)
         mini, minj = np.unravel_index(s.argmin(), s.shape)
         return 0, mini, minj
-
-        min = 9999999
-        mini = 'a'
-        minj = 'a'
-        for i in range(self.l):
-            for j in range(self.c):
-                res = np.sum((x - self.W[i, j]) ** 2)
-                if res < min:
-                    min= res
-                    mini = i
-                    minj = j
-        return min, mini, minj
 
     def neighborhood(self, x, w):
         x= np.array(x)
@@ -39,9 +28,10 @@ class SOM:
         return np.exp(-np.sum((x-w)**2)/(2*self.sigma))
 
     def updateW(self, x, wi, wj):
-        for i in range(self.l):
-            for j in range(self.c):
-                self.W[i, j]+= self.neighborhood([i, j], [wi, wj])*self.eta*(x-self.W[i, j])
+        wij= np.array([wi, wj])
+        A= np.exp(-np.sum((self.ij-wij)**2,axis=1)/(2*self.sigma))
+        A= np.repeat(A, self.n, axis=0).reshape((self.l, self.c, self.n))
+        self.W+=self.eta*(x-self.W)*A
 
     def train(self, X):
         X_=X.copy()
@@ -50,7 +40,7 @@ class SOM:
             for x in X_:
                 min, mini, minj= self.winner(x)
                 self.updateW(x, mini, minj)
-            if i%10 == 0:
+            if i%100 == 0:
                 print("It", i)
 
     def output(self, y):
@@ -86,8 +76,8 @@ def load_file(name):
 def paises():
     x, y= load_file('paises.txt')
     x=np.array(x,dtype=float)
-    # x=x-x.mean(axis=0)
-    # x=x/x.std(axis=0)
+    x=x-x.mean(axis=0)
+    x=x/x.std(axis=0)
     som= SOM(1,4,4)
     som.train(x)
 
@@ -143,7 +133,7 @@ def testeSOM2():
              'greyblue', 'lilac', 'green', 'red',
              'cyan', 'violet', 'yellow', 'white',
              'darkgrey', 'mediumgrey', 'lightgrey']
-    som = SOM(10,10,3)
+    som = SOM(20,30,3)
     som.train(colors)
     print(som.W)
     plt.imshow(som.W, origin='lower')

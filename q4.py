@@ -49,6 +49,7 @@ print('\n Matriz de autovetores Transposta:')
 print(vT)
 
 # Multiplicar vT * [x1,x2,x3,x4]
+# sao 4 valores de Y na verdade
 a = vT[0][0]*vT[1][0]*vT[2][0]*vT[3][0]
 b = vT[0][1]*vT[1][1]*vT[2][1]*vT[3][1]
 c = vT[0][2]*vT[1][2]*vT[2][2]*vT[3][2]
