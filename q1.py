@@ -49,14 +49,21 @@ def computeClusters(clusters, media):
         min_dis = 999999
         a = Cluster([], "")
         b = Cluster([], "")
+
         for ci in clusters:
             for cl in clusters:
                 if ci != cl and ci.distance(cl) < min_dis:
                     min_dis = ci.distance(cl)
                     a = ci
                     b = cl
+
         a.add(b)
         clusters.remove(b)
+
+        str= ''
+        for ci in clusters:
+            str+=ci.__str__()+", "
+        print(str)
 
         SSB = 0
         SST = 0

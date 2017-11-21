@@ -1,7 +1,4 @@
 from matplotlib import pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-from matplotlib import cm
-from matplotlib.ticker import LinearLocator, FormatStrFormatter
 import numpy as np
 
 def mmq(x, y, coef):
