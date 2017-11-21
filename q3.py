@@ -22,11 +22,6 @@ class SOM:
         mini, minj = np.unravel_index(s.argmin(), s.shape)
         return 0, mini, minj
 
-    def neighborhood(self, x, w):
-        x= np.array(x)
-        w= np.array(w)
-        return np.exp(-np.sum((x-w)**2)/(2*self.sigma))
-
     def updateW(self, x, wi, wj):
         wij= np.array([wi, wj])
         A= np.exp(-np.sum((self.ij-wij)**2,axis=1)/(2*self.sigma))
