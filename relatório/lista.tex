@@ -67,7 +67,7 @@
 	\hspace{8pt}Apos isso foi aplicando o método de Ward que considera que inicialmente tudo é um único aglomerado e jutando os clusters mais proximos iterativamente até que todos estejam juntos.
 	\hspace{8pt}Para o cálculo da similaridade, foi utilizado a distância Euclidiana ao quadrado entre os conglomerados	 formados, e assim, juntando os aglomerados de menor distância.
 	
-	\hspace{8pt}Além disso, há um critério de parada $R^2$, o qual foi calculado em função do número de passos, observe a figura abaixo:
+	\hspace{8pt}Além disso, foi cálculado dois critérios de parada: o  $R^2$, mostrado na figura \ref{fig:criterio1}, e o Pseudo $T^2$, exibido na figura \ref{fig:criterio2}.
 
 	\begin{figure}[H]
 	\centering
@@ -86,7 +86,7 @@
 	\caption{A figure with two subfigures}
 	\label{fig:criterios}
 	\end{figure}
-	Aparti desses resultados e analizando o dendograma foi decidido utilizar o numero de clusters igual a 4.
+	A partir desses resultados e analizando o dendograma foi decidido utilizar o número de clusters igual a 4.
 	\newpage
 	\hspace{8pt}E os clusters ficaram com a seguinte configuração:
 	\begin{figure}[H]
@@ -94,24 +94,27 @@
 	\caption{Dendograma}
 	\end{figure}
 	
-	Implementação do algoritimo
+	Implementação do algoritmo
 	\begin{multicols}{2}
 	\inputminted[fontsize=\scriptsize]{python}{code/q1.py}
 	\end{multicols}
 		
 	\section{Repita o problema acima considerado agora o método do K-means ou k-médias que é uma técnica de clusterização para determinação de clusters por particionamento. Compare os resultados com os obtidos pelo método da questão 1.}
 	\paragraph{}
-	\hspace{8pt}Utilizando o metodo das k-means com k=4 pois já sabemos da questão anterior que é um bom numero de clusters para esse problema.
+	\hspace{8pt}Utilizando o método das k-means com k=4, pois já sabemos da questão anterior que é um bom número de clusters para esse problema, obteve-se a seguinte separação:\\
 	
-	[ Nigeria ,  Senegal ,  Serra  Leoa ,  Angola ,  Etiopia ,  Mocambique ]
+	Cluster 1: [ Nigeria ,  Senegal ,  Serra  Leoa ,  Angola ,  Etiopia ,  Mocambique ]
 	
-	[ Cuba ,  Brasil ,  Egito ,  China ]
+	Cluster 2: [ Cuba ,  Brasil ,  Egito ,  China ]
 	
-	[ Reino  Unido ,  Australia ,  Canada ,  Estados  Unidos ,  Japao ,  Franca ,  Cingapura ,  Argentina ,  Uruguai ]
+	Cluster 3: [ Reino  Unido ,  Australia ,  Canada ,  Estados  Unidos ,  Japao ,  Franca ,  Cingapura ,  Argentina ,  Uruguai ]
 	
-	[ Colombia ,  Paraguai ]
+	Cluster 4: [ Colombia ,  Paraguai ]
+	\\
 	
-	Foi utilizado um algoritimo já implementado pela biblioteca scipy
+	\hspace{8pt}Comparando esse resultado com o resultado obtido na questão anterior, é possível notar que os conjuntos de clusters não estão organizados da mesma forma, porém, há muita semelhança, por exemplo: o Cluster 3 possui a mesma junção que países que um dos clusters da questão 1, como também o Cluster 2.
+		
+	\hspace{8pt}Foi utilizado um algoritimo já implementado pela biblioteca scipy, o qual pode ser observado abaixo:
 	\begin{multicols}{2}
 	\inputminted[fontsize=\scriptsize]{python}{code/q2.py}
 	\end{multicols}
@@ -119,24 +122,28 @@
 	
 	\section{Repita o problema da questão 1 considerado agora a solução do problema pela rede de Kohonen ou como é conhecido SOM que é uma técnica de clusterização e também uma técnica de visualização de dados de alta dimensão em baixa dimensão. Compare com os resultados obtidos nas questões 1 e 2.}
 	\paragraph{}
-	\hspace{8pt}Foi implementado o algoritimo da SOM classico, utilizando como parametro de distancia a euclidiana.
-	\hspace{8pt}A estrutura da rede foi unidimencional com 1 linha e 4 colunas para que a classificação fique entre 4 clusters para comparar com os resultados anteriores, com 2000 iterações e taxa de aprendizagem de 0.05.
+	\hspace{8pt}Foi implementado o algoritimo da SOM clássico, utilizando como parâmetro de distância a euclidiana.
+	\hspace{8pt}A estrutura da rede foi unidimencional com 1 linha e 4 colunas para que a classificação fique entre 4 clusters e assim comparar com os resultados anteriores, além disso, com 2000 iterações e taxa de aprendizagem de 0.05.
 	
-	\hspace{8pt}O resultado da ativação dos neuronios para cada pais foi a seguinte, a escala começa do preto com o menor valor e o branco o maior a distancia:
+	\hspace{8pt}O resultado da ativação dos neurônios para cada país foi a seguinte, a escala começa do preto com o menor valor e o branco o maior a distância:
 	\begin{figure}[H]
 	\centering \includegraphics[height=7cm]{images/q3_plot.png}	
-	\caption{Neuronios}
+	\caption{Neurônios}
 	\end{figure}
 		
-	\hspace{8pt}Escolhendo os neuronios com menor valor de distancia como vencedor e agrupando os paises de acordo com os neuronios vencedores, ficamos com os seguintes clusters:
+	\hspace{8pt}Escolhendo os neurônios com menor valor de distância como vencedor e agrupando os países de acordo com os neurônios vencedores, ficamos com os seguintes clusters:
 	
-	[Nigeria, Senegal, Serra Leoa, Angola, Etiopia, Mocambique]
+	Cluster 1: [Nigeria, Senegal, Serra Leoa, Angola, Etiopia, Mocambique]
 	
-	[Colombia, Paraguai, Egito]
+	Cluster 2: [Colombia, Paraguai, Egito]
 	
-	[Brasil, China]
+	Cluster 3: [Brasil, China]
 	
-	[Reino Unido, Australia, Canada, Estados Unidos, Japao, Franca, Cingapura, Argentina, Uruguai, Cuba]
+	Cluster 4: [Reino Unido, Australia, Canada, Estados Unidos, Japao, Franca, Cingapura, Argentina, Uruguai, Cuba]\\
+	
+	\hspace{8pt}Apesar de não ter sido obtido exatamente a mesma configuração dos clusters, assim como na questão 2, há uma grande semelhança, onde alguns cluster possuem a mesma junção de países.
+	
+	\hspace{8pt}Algoritmo Implementado:
 
 	\begin{multicols}{2}
 	\inputminted[fontsize=\scriptsize]{python}{code/q3.py}
@@ -165,7 +172,7 @@
 	\end{tabular}
 	\end{table}
 	
-	\hspace{8pt}b) Desta matriz determine os autovalores ordenados do máximo ao mínimo e osautovetores correspondentes.
+	\hspace{8pt}b) Desta matriz determine os autovalores ordenados do máximo ao mínimo e os autovetores correspondentes.
 	
 	\hspace{8pt}Definição
 	\begin{equation}
@@ -247,15 +254,16 @@
 	Coeficiente R=0.781289128039
 	\begin{table}[H]
 	\centering
-	\caption{Estatistica aproximação}
+	\caption{Estatística de aproximação}
 	\label{tab:q5_est1}
 	\begin{tabular}{|l|l|l|}
 	\hline
-	variavel & media & desvio \\ \hline
+	variável & média & desvio \\ \hline
 	y & 16.4615384615 & 7.9673891546  \\ \hline
 	$\hat{y}$ & 16.4615384615 & 6.22483452535 \\ \hline
 	\end{tabular}
-	\end{table}	
+	\end{table}
+	
 	Equação encontrada $-0.55970149x+27.65556831$	
 
 	\begin{figure}[H]
@@ -268,31 +276,32 @@
 	
 	\hspace{8pt}b) Aproxime os dados por um modelo regressivo não linear dados por $\hat{y}(x)=a_0x^{a_1}$
 
-	Linearizando o modelo com ln
+	\hspace{8pt}Linearizando o modelo com ln
 	
 	\begin{center}
 	$ln(\hat{y})=ln(a_0x^{a_1})$\\
 	$ln(\hat{y})=ln(a_0)+a_1ln(x)$\\
 	$z=c_1+a_1v$
+	\end{center}
 	
-	\hspace{8pt}Fazendo a regressão para esse novo modelo econtramos $c_1$ e $a_1$, como $c_1=ln(a_0)$ temos que $a_0=e^{c_1}$\\
+	\hspace{8pt}Fazendo a regressão para esse novo modelo econtramos $c_1$ e $a_1$, como $c_1=ln(a_0)$ temos que $a_0=e^{c_1}$.
+	
+	\newpage
 	
 	\begin{multicols}{2}
-	
 	Coeficiente R=0.996623420768
 	\begin{table}[H]
 	\centering
-	\caption{Estatistica aproximação}
+	\caption{Estatística de aproximação}
 	\label{tab:q5_est2}
 	\begin{tabular}{|l|l|l|}
 	\hline
-	variavel & media & desvio \\ \hline
+	variável & média & desvio \\ \hline
 	y & 1.56 & 1.46846859006  \\ \hline
 	$\hat{y}$ & 1.57741585343 & 1.54900664458 \\ \hline
 	\end{tabular}
 	\end{table}	
-	A equação encontrada
-	$19.5103385823x^{-1.41037840395}$
+	A equação encontrada: $19.5103385823x^{-1.41037840395}$
 
 	\begin{figure}[H]
 	\centering \includegraphics[height=7cm]{images/q5_fit2.png}	
@@ -300,7 +309,7 @@
 	\end{figure}	
 	
 	\end{multicols}
-	\end{center}
+	
 		
 	\hspace{8pt}c) Aproxime os dados por um modelo regressivo linear múltiplo dado por $\hat{y}(x)=a_0+a_1x_1+a_2x_2$
 
@@ -320,14 +329,14 @@
 	    y_n
 	\end{bmatrix}\]	
 
-	Equação $9.5375+8.675x_1-2.675x_2$
+	Equação: $9.5375+8.675x_1-2.675x_2$
 	\begin{table}[H]
 	\centering
-	\caption{Estatistica aproximação}
+	\caption{Estatística de aproximação}
 	\label{tab:q5_est3}
 	\begin{tabular}{|l|l|l|}
 	\hline
-	variavel & media & desvio \\ \hline
+	variável & média & desvio \\ \hline
 	y & 27.2125 & 10.3435290762  \\ \hline
 	$\hat{y}$ & 27.2125 & 9.79073222492 \\ \hline
 	\end{tabular}
@@ -354,9 +363,10 @@
 	\end{center}
 	\begin{figure}[H]
 	\centering \includegraphics[height=10cm]{images/q6_1.png}	
-	\caption{Grafico controle}
+	\caption{Gráfico de controle}
 	\end{figure}
-	A porcentagem de hastes defeituosas é $P(x<LIC)+P(x>LSC)$ que pode ser calculada pelo score z com $z=\frac{LIC-\bar{\bar{X}}}{\frac{\sigma}{\sqrt{n}}}~3$ pelo valor na tabela 0.0143938057603 como é simetrico a porcetagem de P(x>LSC) é igual assim a probabilidade de hastes defeituosas é de aproximadamente 0.028\%.
+	
+	\hspace{8pt}A porcentagem de hastes defeituosas é $P(x<LIC)+P(x>LSC)$ que pode ser calculada pelo score z com $z=\frac{LIC-\bar{\bar{X}}}{\frac{\sigma}{\sqrt{n}}}~3$ pelo valor na tabela 0.0143938057603 como é simétrico a porcetagem de P(x>LSC) é igual assim a probabilidade de hastes defeituosas é de aproximadamente 0.028\%.
 	
 	
 	\section{Os dados seguintes representam o número de defeitos de solda observados em 24 amostras de cinco placas de circuitos impresso: 7, 6, 8, 10, 24, 6, 5, 4, 8, 11, 15, 8, 4, 16, 11, 12, 8, 6, 5, 9, 7, 14, 8, 21. Podemos concluir que o processo esteja sob controle usando o gráfico c? Se não, suponha que se possa encontrar causas atribuíveis e revise os limites de controle.}
