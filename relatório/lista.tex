@@ -35,419 +35,428 @@
 \usepackage[hidelinks]{hyperref}
 
 \begin{document}
-	\begin{titlepage}
-	\centering
-	\fontsize{12}{18}
-	\fontfamily{ptm}
-	\selectfont
-		UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE\\
-		DEPARTAMENTO DE COMPUTAÇÃO E AUTOMAÇÃO\\
-		TÓPICOS ESPECIAIS EM ENGENHARIA DE COMPUTAÇÃO\\
-		PROFESSOR ADRIÃO DUARTE DORIA NETO\\[20 mm]
-		ANDRESSA STÉFANY S. DE OLIVEIRA - 20160154101\\
-		VITOR RAMOS GOMES DA SILVA - 20160154415\\[50 mm]
-	\fontsize{18}{18}	
-	\selectfont
-		3ª LISTA DE EXERCÍCIOS
-	\vfill
-	\fontsize{12}{18}
-	\selectfont
-	\printdate{2017-11-23}
-	\end{titlepage}
-	
-	\large
-	\newpage
-	\section{Considere o processo de identificação de aglomerados (clusters) com base em uma técnica hierárquica aglomerativa. Neste problema considere o método de Ward resumido abaixo. Considere também dois critérios para parada do processo aglomerativo no dendograma e identificação do número de aglomerados. O critério $R_2$ e o critério Pseudo $T_2$. Construa dendondograma e indique o ponto de corte ou de parada determinado com isto os clusters ou aglomerados.}
-	\paragraph{}
-		\hspace{8pt}Inicialmente os dados foram normalizados para que fiquem com media 0 e desvio padrão 1 aplicando a seguinte operação:
-	\begin{equation}
-	x_{i}=\frac{x_i-\bar{x_i}}{\sigma_i}
-	\end{equation}
-	
-	\hspace{8pt}Apos isso foi aplicando o método de Ward que considera que inicialmente tudo é um único aglomerado e jutando os clusters mais proximos iterativamente até que todos estejam juntos.
-	\hspace{8pt}Para o cálculo da similaridade, foi utilizado a distância Euclidiana ao quadrado entre os conglomerados	 formados, e assim, juntando os aglomerados de menor distância.
-	
-	\hspace{8pt}Além disso, há um critério de parada $R^2$, o qual foi calculado em função do número de passos, observe a figura abaixo:
+    \begin{titlepage}
+    \centering
+    \fontsize{12}{18}
+    \fontfamily{ptm}
+    \selectfont
+        UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE\\
+        DEPARTAMENTO DE COMPUTAÇÃO E AUTOMAÇÃO\\
+        TÓPICOS ESPECIAIS EM ENGENHARIA DE COMPUTAÇÃO\\
+        PROFESSOR ADRIÃO DUARTE DORIA NETO\\[20 mm]
+        ANDRESSA STÉFANY S. DE OLIVEIRA - 20160154101\\
+        VITOR RAMOS GOMES DA SILVA - 20160154415\\[50 mm]
+    \fontsize{18}{18}    
+    \selectfont
+        3ª LISTA DE EXERCÍCIOS
+    \vfill
+    \fontsize{12}{18}
+    \selectfont
+    \printdate{2017-11-23}
+    \end{titlepage}
+    
+    \large
+    \newpage
+    \section{Considere o processo de identificação de aglomerados (clusters) com base em uma técnica hierárquica aglomerativa. Neste problema considere o método de Ward resumido abaixo. Considere também dois critérios para parada do processo aglomerativo no dendograma e identificação do número de aglomerados. O critério $R_2$ e o critério Pseudo $T_2$. Construa dendondograma e indique o ponto de corte ou de parada determinado com isto os clusters ou aglomerados.}
+    \paragraph{}
+        \hspace{8pt}Inicialmente os dados foram normalizados para que fiquem com media 0 e desvio padrão 1 aplicando a seguinte operação:
+    \begin{equation}
+    x_{i}=\frac{x_i-\bar{x_i}}{\sigma_i}
+    \end{equation}
+    
+    \hspace{8pt}Apos isso foi aplicando o método de Ward que considera que inicialmente tudo é um único aglomerado e jutando os clusters mais proximos iterativamente até que todos estejam juntos.
+    \hspace{8pt}Para o cálculo da similaridade, foi utilizado a distância Euclidiana ao quadrado entre os conglomerados     formados, e assim, juntando os aglomerados de menor distância.
+    
+    \hspace{8pt}Além disso, foi cálculado dois critérios de parada: o  $R^2$, mostrado na figura \ref{fig:criterio1}, e o Pseudo $T^2$, exibido na figura \ref{fig:criterio2}.
 
-	\begin{figure}[H]
-	\centering
-	\begin{subfigure}{.5\textwidth}
-	\centering
-	\includegraphics[height=6cm]{images/q1_R.png}
-	\caption{Critério $R^2$}
-	\label{fig:criterio1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-	\centering
-	\includegraphics[height=6cm]{images/q1_T.png}
-	\caption{Critério do Pseudo $T^2$}
-	\label{fig:criterio2}
-	\end{subfigure}
-	\caption{A figure with two subfigures}
-	\label{fig:criterios}
-	\end{figure}
-	Aparti desses resultados e analizando o dendograma foi decidido utilizar o numero de clusters igual a 4.
-	\newpage
-	\hspace{8pt}E os clusters ficaram com a seguinte configuração:
-	\begin{figure}[H]
-	\centering \includegraphics[height=20cm,width=15cm]{images/q1_2.png}	
-	\caption{Dendograma}
-	\end{figure}
-	
-	Implementação do algoritimo
-	\begin{multicols}{2}
-	\inputminted[fontsize=\scriptsize]{python}{code/q1.py}
-	\end{multicols}
-		
-	\section{Repita o problema acima considerado agora o método do K-means ou k-médias que é uma técnica de clusterização para determinação de clusters por particionamento. Compare os resultados com os obtidos pelo método da questão 1.}
-	\paragraph{}
-	\hspace{8pt}Utilizando o metodo das k-means com k=4 pois já sabemos da questão anterior que é um bom numero de clusters para esse problema.
-	
-	[ Nigeria ,  Senegal ,  Serra  Leoa ,  Angola ,  Etiopia ,  Mocambique ]
-	
-	[ Cuba ,  Brasil ,  Egito ,  China ]
-	
-	[ Reino  Unido ,  Australia ,  Canada ,  Estados  Unidos ,  Japao ,  Franca ,  Cingapura ,  Argentina ,  Uruguai ]
-	
-	[ Colombia ,  Paraguai ]
-	
-	Foi utilizado um algoritimo já implementado pela biblioteca scipy
-	\begin{multicols}{2}
-	\inputminted[fontsize=\scriptsize]{python}{code/q2.py}
-	\end{multicols}
-	
-	
-	\section{Repita o problema da questão 1 considerado agora a solução do problema pela rede de Kohonen ou como é conhecido SOM que é uma técnica de clusterização e também uma técnica de visualização de dados de alta dimensão em baixa dimensão. Compare com os resultados obtidos nas questões 1 e 2.}
-	\paragraph{}
-	\hspace{8pt}Foi implementado o algoritimo da SOM classico, utilizando como parametro de distancia a euclidiana.
-	\hspace{8pt}A estrutura da rede foi unidimencional com 1 linha e 4 colunas para que a classificação fique entre 4 clusters para comparar com os resultados anteriores, com 2000 iterações e taxa de aprendizagem de 0.05.
-	
-	\hspace{8pt}O resultado da ativação dos neuronios para cada pais foi a seguinte, a escala começa do preto com o menor valor e o branco o maior a distancia:
-	\begin{figure}[H]
-	\centering \includegraphics[height=7cm]{images/q3_plot.png}	
-	\caption{Neuronios}
-	\end{figure}
-		
-	\hspace{8pt}Escolhendo os neuronios com menor valor de distancia como vencedor e agrupando os paises de acordo com os neuronios vencedores, ficamos com os seguintes clusters:
-	
-	[Nigeria, Senegal, Serra Leoa, Angola, Etiopia, Mocambique]
-	
-	[Colombia, Paraguai, Egito]
-	
-	[Brasil, China]
-	
-	[Reino Unido, Australia, Canada, Estados Unidos, Japao, Franca, Cingapura, Argentina, Uruguai, Cuba]
+    \begin{figure}[H]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[height=6cm]{images/q1_R.png}
+    \caption{Critério $R^2$}
+    \label{fig:criterio1}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[height=6cm]{images/q1_T.png}
+    \caption{Critério do Pseudo $T^2$}
+    \label{fig:criterio2}
+    \end{subfigure}
+    \caption{A figure with two subfigures}
+    \label{fig:criterios}
+    \end{figure}
+    A partir desses resultados e analizando o dendograma foi decidido utilizar o número de clusters igual a 4.
+    \newpage
+    \hspace{8pt}E os clusters ficaram com a seguinte configuração:
+    \begin{figure}[H]
+    \centering \includegraphics[height=20cm,width=15cm]{images/q1_2.png}    
+    \caption{Dendograma}
+    \end{figure}
+    
+    Implementação do algoritmo
+    \begin{multicols}{2}
+    \inputminted[fontsize=\scriptsize]{python}{code/q1.py}
+    \end{multicols}
+        
+    \section{Repita o problema acima considerado agora o método do K-means ou k-médias que é uma técnica de clusterização para determinação de clusters por particionamento. Compare os resultados com os obtidos pelo método da questão 1.}
+    \paragraph{}
+    \hspace{8pt}Utilizando o método das k-means com k=4, pois já sabemos da questão anterior que é um bom número de clusters para esse problema, obteve-se a seguinte separação:\\
+    
+    Cluster 1: [ Nigeria ,  Senegal ,  Serra  Leoa ,  Angola ,  Etiopia ,  Mocambique ]
+    
+    Cluster 2: [ Cuba ,  Brasil ,  Egito ,  China ]
+    
+    Cluster 3: [ Reino  Unido ,  Australia ,  Canada ,  Estados  Unidos ,  Japao ,  Franca ,  Cingapura ,  Argentina ,  Uruguai ]
+    
+    Cluster 4: [ Colombia ,  Paraguai ]
+    \\
+    
+    \hspace{8pt}Comparando esse resultado com o resultado obtido na questão anterior, é possível notar que os conjuntos de clusters não estão organizados da mesma forma, porém, há muita semelhança, por exemplo: o Cluster 3 possui a mesma junção que países que um dos clusters da questão 1, como também o Cluster 2.
+        
+    \hspace{8pt}Foi utilizado um algoritimo já implementado pela biblioteca scipy, o qual pode ser observado abaixo:
+    \begin{multicols}{2}
+    \inputminted[fontsize=\scriptsize]{python}{code/q2.py}
+    \end{multicols}
+    
+    
+    \section{Repita o problema da questão 1 considerado agora a solução do problema pela rede de Kohonen ou como é conhecido SOM que é uma técnica de clusterização e também uma técnica de visualização de dados de alta dimensão em baixa dimensão. Compare com os resultados obtidos nas questões 1 e 2.}
+    \paragraph{}
+    \hspace{8pt}Foi implementado o algoritimo da SOM clássico, utilizando como parâmetro de distância a euclidiana.
+    \hspace{8pt}A estrutura da rede foi unidimencional com 1 linha e 4 colunas para que a classificação fique entre 4 clusters e assim comparar com os resultados anteriores, além disso, com 2000 iterações e taxa de aprendizagem de 0.05.
+    
+    \hspace{8pt}O resultado da ativação dos neurônios para cada país foi a seguinte, a escala começa do preto com o menor valor e o branco o maior a distância:
+    \begin{figure}[H]
+    \centering \includegraphics[height=7cm]{images/q3_plot.png}    
+    \caption{Neurônios}
+    \end{figure}
+        
+    \hspace{8pt}Escolhendo os neurônios com menor valor de distância como vencedor e agrupando os países de acordo com os neurônios vencedores, ficamos com os seguintes clusters:
+    
+    Cluster 1: [Nigeria, Senegal, Serra Leoa, Angola, Etiopia, Mocambique]
+    
+    Cluster 2: [Colombia, Paraguai, Egito]
+    
+    Cluster 3: [Brasil, China]
+    
+    Cluster 4: [Reino Unido, Australia, Canada, Estados Unidos, Japao, Franca, Cingapura, Argentina, Uruguai, Cuba]\\
+    
+    \hspace{8pt}Apesar de não ter sido obtido exatamente a mesma configuração dos clusters, assim como na questão 2, há uma grande semelhança, onde alguns cluster possuem a mesma junção de países.
+    
+    \hspace{8pt}Algoritmo Implementado:
 
-	\begin{multicols}{2}
-	\inputminted[fontsize=\scriptsize]{python}{code/q3.py}
-	\end{multicols}	
-	
-	\section{Considere o problema de análise de componentes principais (PCA), isto é, determinar em uma distribuição de dados as componentes que tenham associadas a elas a maior variância e representar as mesmas no espaço de dados formado pelos autovetores da matriz de correlação. Neste sentido considere o seguinte problema. A tabela abaixo apresenta os dados relativos a amostras de solo. Para cada amostra, tem-se as medidas das porcentagens de areia (X1), sedimentos (X2), argila (X3) e a quantidade de material orgânico (X4). Da referida tabela obtenha as estatísticas descritivas de cada variável, isto é, a média, a mediana, o desvio padrão, os valores máximo e mínimo. Sob estas condições :}
-	\paragraph{}
-	\hspace{8pt}a) Obtenha desta tabela a matriz de covariância.
-	
-	\hspace{8pt}Definição
-	\begin{equation}
-		\sum=E[(X-E[X])(X-E[X])^T]
-	\end{equation}
-	
-	\hspace{8pt}Valores obtidos
-	\begin{table}[H]
-	\centering
-	\caption{Tabela de covariância}
-	\label{tab:q4_cov}
-	\begin{tabular}{|l|l|l|l|}
-	\hline
-	6.8223e+01  & -4.8913e+01 & -1.8377e+01 & 1.7986e+00  \\ \hline
-	-4.8913e+01 & 3.9888e+01  & 8.5205e+00  & -1.8142e+00 \\ \hline
-	-1.8377e+01 & 8.5205e+00  & 9.5961e+00  & -1.3333e-02 \\ \hline
-	1.7986e+00  & -1.8142e+00 & -1.3333e-02 & 6.8580e-01  \\ \hline
-	\end{tabular}
-	\end{table}
-	
-	\hspace{8pt}b) Desta matriz determine os autovalores ordenados do máximo ao mínimo e osautovetores correspondentes.
-	
-	\hspace{8pt}Definição
-	\begin{equation}
-		Av=\lambda v
-	\end{equation}	
-	
-	\hspace{8pt}Valores obtidos
-	\begin{table}[H]
-	\centering
-	\caption{Matriz dos autovetores}
-	\label{q4_autovetores}
-	\begin{tabular}{|l|l|l|l|}
-	\hline
-	-7.8839e-01 & 2.2922e-01  & -5.7019e-01 & -2.8106e-02 \\ \hline
-	5.8276e-01  & 5.7071e-01  & -5.7778e-01 & 2.9037e-02  \\ \hline
-	1.9572e-01  & -7.8486e-01 & -5.8203e-01 & -8.3285e-02 \\ \hline
-	-2.2878e-02 & -7.5822e-02 & -4.7929e-02 & 9.9571e-01 \\ \hline
-	\end{tabular}
-	\end{table}
-	
-	\begin{table}[H]
-	\centering
-	\caption{Autovalores asscociados}
-	\label{q4_autovalores}
-	\begin{tabular}{|l|l|l|l|}
-	\hline
-	1.0899e+02 & 8.7661e+00 & 5.0127e-02 & 5.8324e-01 \\ \hline
-	\end{tabular}
-	\end{table}
-	
-	\hspace{8pt}c) Apresente as equações da componentes principais, isto é, cada componente é dada por $Y = e^t_i X_i = e_{1i}X_1+e_{2i}X_2+e_{3i}X_3+e_{4i}X_4$, sendo $i = 1,2,3,4$, onde $e_ji$ é a componente i do autovetor j.
-	\begin{center}
-	$Y_1 =-0.7883 x1 + 0.5827 x2 - 0.02287 x3 + 0.1957 x4$\\
-	$Y_2 = 0.2292 x1 + 0.5707 x2 - 0.07582 x3 - 0.7848 x4$\\
-	$Y_3 =-0.5701 x1 - 0.5777 x2 - 0.04792 x3 - 0.5820 x4$\\
-	$Y_4 =-0.0286 x1 + 0.0290 x2 + 0.99570 x3 - 0.0832 x4$
-	\end{center}
-	\hspace{8pt}d) Calcule os percentuais de variância para cada componente e ordene a classificação das variáveis segundo este critério.
+    \begin{multicols}{2}
+    \inputminted[fontsize=\scriptsize]{python}{code/q3.py}
+    \end{multicols}    
+    
+    \section{Considere o problema de análise de componentes principais (PCA), isto é, determinar em uma distribuição de dados as componentes que tenham associadas a elas a maior variância e representar as mesmas no espaço de dados formado pelos autovetores da matriz de correlação. Neste sentido considere o seguinte problema. A tabela abaixo apresenta os dados relativos a amostras de solo. Para cada amostra, tem-se as medidas das porcentagens de areia (X1), sedimentos (X2), argila (X3) e a quantidade de material orgânico (X4). Da referida tabela obtenha as estatísticas descritivas de cada variável, isto é, a média, a mediana, o desvio padrão, os valores máximo e mínimo. Sob estas condições :}
+    \paragraph{}
+    \hspace{8pt}a) Obtenha desta tabela a matriz de covariância.
+    
+    \hspace{8pt}Definição
+    \begin{equation}
+        \sum=E[(X-E[X])(X-E[X])^T]
+    \end{equation}
+    
+    \hspace{8pt}Valores obtidos
+    \begin{table}[H]
+    \centering
+    \caption{Tabela de covariância}
+    \label{tab:q4_cov}
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    6.8223e+01  & -4.8913e+01 & -1.8377e+01 & 1.7986e+00  \\ \hline
+    -4.8913e+01 & 3.9888e+01  & 8.5205e+00  & -1.8142e+00 \\ \hline
+    -1.8377e+01 & 8.5205e+00  & 9.5961e+00  & -1.3333e-02 \\ \hline
+    1.7986e+00  & -1.8142e+00 & -1.3333e-02 & 6.8580e-01  \\ \hline
+    \end{tabular}
+    \end{table}
+    
+    \hspace{8pt}b) Desta matriz determine os autovalores ordenados do máximo ao mínimo e os autovetores correspondentes.
+    
+    \hspace{8pt}Definição
+    \begin{equation}
+        Av=\lambda v
+    \end{equation}    
+    
+    \hspace{8pt}Valores obtidos
+    \begin{table}[H]
+    \centering
+    \caption{Matriz dos autovetores}
+    \label{q4_autovetores}
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    -7.8839e-01 & 2.2922e-01  & -5.7019e-01 & -2.8106e-02 \\ \hline
+    5.8276e-01  & 5.7071e-01  & -5.7778e-01 & 2.9037e-02  \\ \hline
+    1.9572e-01  & -7.8486e-01 & -5.8203e-01 & -8.3285e-02 \\ \hline
+    -2.2878e-02 & -7.5822e-02 & -4.7929e-02 & 9.9571e-01 \\ \hline
+    \end{tabular}
+    \end{table}
+    
+    \begin{table}[H]
+    \centering
+    \caption{Autovalores asscociados}
+    \label{q4_autovalores}
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    1.0899e+02 & 8.7661e+00 & 5.0127e-02 & 5.8324e-01 \\ \hline
+    \end{tabular}
+    \end{table}
+    
+    \hspace{8pt}c) Apresente as equações da componentes principais, isto é, cada componente é dada por $Y = e^t_i X_i = e_{1i}X_1+e_{2i}X_2+e_{3i}X_3+e_{4i}X_4$, sendo $i = 1,2,3,4$, onde $e_ji$ é a componente i do autovetor j.
+    \begin{center}
+    $Y_1 =-0.7883 x1 + 0.5827 x2 - 0.02287 x3 + 0.1957 x4$\\
+    $Y_2 = 0.2292 x1 + 0.5707 x2 - 0.07582 x3 - 0.7848 x4$\\
+    $Y_3 =-0.5701 x1 - 0.5777 x2 - 0.04792 x3 - 0.5820 x4$\\
+    $Y_4 =-0.0286 x1 + 0.0290 x2 + 0.99570 x3 - 0.0832 x4$
+    \end{center}
+    \hspace{8pt}d) Calcule os percentuais de variância para cada componente e ordene a classificação das variáveis segundo este critério.
 
-	\begin{equation}
-	\frac{\lambda_i}{\sum{\lambda_i}}*100\%
-	\end{equation}		
-	
-	\begin{table}[H]
-	\centering
-	\caption{Percentuais de variância}
-	\label{q4_variancia}
-	\begin{tabular}{|l|l|l|l|}
-	\hline
-	92.06 & 7.40 & 0.042 & 0.492 \\ \hline
-	\end{tabular}
-	\end{table}
-	
-	\section{Considere os problemas abaixo relativos a aproximação por mínimos quadrado (regressão linear, regressão não linear) de dados. Para cada problema após a obtenção dos coeficientes do modelo de regressão calcule as estimativas estatísticas dos dados (média, variância, desvio padrão), assim como o coeficiente de correlação dado por $\sqrt[]{\frac{S_t - S_r}{S_t}}$ onde $S_t=\sum_{i=1}^{N}(y_i-\overline{y})^2$ sendo $\hat{y}(x)$ o modelo de aproximação.}
-	\paragraph{}
-	\hspace{8pt}a) Aproxime os dados por um modelo regressivo linear, isto é, $\hat{y}(x)=a_0+a_1x$
-	
-	Resolvendo a equação
-	\begin{center}	
-	$Ac=b$\\
-	$A^TAc=A^tb$\\
-	$c=(A^TA)^{-1}A^Tb$\\
-	onde
-	\[ A=
- 	\begin{bmatrix}
-    	1 & x_1 \\
-   		\vdots \\
-	    1 & x_n
-	\end{bmatrix}\]
-	e 
-	\[ B=
- 	\begin{bmatrix}
-    	y_1 \\
-   		\vdots \\
-	    y_n
-	\end{bmatrix}\]
+    \begin{equation}
+    \frac{\lambda_i}{\sum{\lambda_i}}*100\%
+    \end{equation}        
+    
+    \begin{table}[H]
+    \centering
+    \caption{Percentuais de variância}
+    \label{q4_variancia}
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    92.06 & 7.40 & 0.042 & 0.492 \\ \hline
+    \end{tabular}
+    \end{table}
+    
+    \section{Considere os problemas abaixo relativos a aproximação por mínimos quadrado (regressão linear, regressão não linear) de dados. Para cada problema após a obtenção dos coeficientes do modelo de regressão calcule as estimativas estatísticas dos dados (média, variância, desvio padrão), assim como o coeficiente de correlação dado por $\sqrt[]{\frac{S_t - S_r}{S_t}}$ onde $S_t=\sum_{i=1}^{N}(y_i-\overline{y})^2$ sendo $\hat{y}(x)$ o modelo de aproximação.}
+    \paragraph{}
+    \hspace{8pt}a) Aproxime os dados por um modelo regressivo linear, isto é, $\hat{y}(x)=a_0+a_1x$
+    
+    Resolvendo a equação
+    \begin{center}    
+    $Ac=b$\\
+    $A^TAc=A^tb$\\
+    $c=(A^TA)^{-1}A^Tb$\\
+    onde
+    \[ A=
+     \begin{bmatrix}
+        1 & x_1 \\
+           \vdots \\
+        1 & x_n
+    \end{bmatrix}\]
+    e 
+    \[ B=
+     \begin{bmatrix}
+        y_1 \\
+           \vdots \\
+        y_n
+    \end{bmatrix}\]
 
-	\begin{multicols}{2}
-	Coeficiente R=0.781289128039
-	\begin{table}[H]
-	\centering
-	\caption{Estatistica aproximação}
-	\label{tab:q5_est1}
-	\begin{tabular}{|l|l|l|}
-	\hline
-	variavel & media & desvio \\ \hline
-	y & 16.4615384615 & 7.9673891546  \\ \hline
-	$\hat{y}$ & 16.4615384615 & 6.22483452535 \\ \hline
-	\end{tabular}
-	\end{table}	
-	Equação encontrada $-0.55970149x+27.65556831$	
+    \begin{multicols}{2}
+    Coeficiente R=0.781289128039
+    \begin{table}[H]
+    \centering
+    \caption{Estatística de aproximação}
+    \label{tab:q5_est1}
+    \begin{tabular}{|l|l|l|}
+    \hline
+    variável & média & desvio \\ \hline
+    y & 16.4615384615 & 7.9673891546  \\ \hline
+    $\hat{y}$ & 16.4615384615 & 6.22483452535 \\ \hline
+    \end{tabular}
+    \end{table}
+    
+    Equação encontrada $-0.55970149x+27.65556831$    
 
-	\begin{figure}[H]
-	\centering \includegraphics[height=7cm]{images/q5_fit1.png}	
-	\caption{Aproximação}
-	\end{figure}	
-	
-	\end{multicols}	
-	\end{center}
-	
-	\hspace{8pt}b) Aproxime os dados por um modelo regressivo não linear dados por $\hat{y}(x)=a_0x^{a_1}$
+    \begin{figure}[H]
+    \centering \includegraphics[height=7cm]{images/q5_fit1.png}    
+    \caption{Aproximação}
+    \end{figure}    
+    
+    \end{multicols}    
+    \end{center}
+    
+    \hspace{8pt}b) Aproxime os dados por um modelo regressivo não linear dados por $\hat{y}(x)=a_0x^{a_1}$
 
-	Linearizando o modelo com ln
-	
-	\begin{center}
-	$ln(\hat{y})=ln(a_0x^{a_1})$\\
-	$ln(\hat{y})=ln(a_0)+a_1ln(x)$\\
-	$z=c_1+a_1v$
-	
-	\hspace{8pt}Fazendo a regressão para esse novo modelo econtramos $c_1$ e $a_1$, como $c_1=ln(a_0)$ temos que $a_0=e^{c_1}$\\
-	
-	\begin{multicols}{2}
-	
-	Coeficiente R=0.996623420768
-	\begin{table}[H]
-	\centering
-	\caption{Estatistica aproximação}
-	\label{tab:q5_est2}
-	\begin{tabular}{|l|l|l|}
-	\hline
-	variavel & media & desvio \\ \hline
-	y & 1.56 & 1.46846859006  \\ \hline
-	$\hat{y}$ & 1.57741585343 & 1.54900664458 \\ \hline
-	\end{tabular}
-	\end{table}	
-	A equação encontrada
-	$19.5103385823x^{-1.41037840395}$
+    \hspace{8pt}Linearizando o modelo com ln
+    
+    \begin{center}
+    $ln(\hat{y})=ln(a_0x^{a_1})$\\
+    $ln(\hat{y})=ln(a_0)+a_1ln(x)$\\
+    $z=c_1+a_1v$
+    \end{center}
+    
+    \hspace{8pt}Fazendo a regressão para esse novo modelo econtramos $c_1$ e $a_1$, como $c_1=ln(a_0)$ temos que $a_0=e^{c_1}$.
+    
+    \newpage
+    
+    \begin{multicols}{2}
+    Coeficiente R=0.996623420768
+    \begin{table}[H]
+    \centering
+    \caption{Estatística de aproximação}
+    \label{tab:q5_est2}
+    \begin{tabular}{|l|l|l|}
+    \hline
+    variável & média & desvio \\ \hline
+    y & 1.56 & 1.46846859006  \\ \hline
+    $\hat{y}$ & 1.57741585343 & 1.54900664458 \\ \hline
+    \end{tabular}
+    \end{table}    
+    A equação encontrada: $19.5103385823x^{-1.41037840395}$
 
-	\begin{figure}[H]
-	\centering \includegraphics[height=7cm]{images/q5_fit2.png}	
-	\caption{Aproximação}
-	\end{figure}	
-	
-	\end{multicols}
-	\end{center}
-		
-	\hspace{8pt}c) Aproxime os dados por um modelo regressivo linear múltiplo dado por $\hat{y}(x)=a_0+a_1x_1+a_2x_2$
+    \begin{figure}[H]
+    \centering \includegraphics[height=7cm]{images/q5_fit2.png}    
+    \caption{Aproximação}
+    \end{figure}    
+    
+    \end{multicols}
+    
+        
+    \hspace{8pt}c) Aproxime os dados por um modelo regressivo linear múltiplo dado por $\hat{y}(x)=a_0+a_1x_1+a_2x_2$
 
-	Neste caso as matrizes são:\\
-	
-	\[ A=
- 	\begin{bmatrix}
-    	1 & x_{1i}    & x_{2i} \\
-   	 	  & \vdots & \\
-	    1 & x_{1n}    & x_{2n}
-	\end{bmatrix}\]
-	e 
-	\[ B=
- 	\begin{bmatrix}
-    	y_1 \\
-   		\vdots \\
-	    y_n
-	\end{bmatrix}\]	
+    Neste caso as matrizes são:\\
+    
+    \[ A=
+     \begin{bmatrix}
+        1 & x_{1i}    & x_{2i} \\
+              & \vdots & \\
+        1 & x_{1n}    & x_{2n}
+    \end{bmatrix}\]
+    e 
+    \[ B=
+     \begin{bmatrix}
+        y_1 \\
+           \vdots \\
+        y_n
+    \end{bmatrix}\]    
 
-	Equação $9.5375+8.675x_1-2.675x_2$
-	\begin{table}[H]
-	\centering
-	\caption{Estatistica aproximação}
-	\label{tab:q5_est3}
-	\begin{tabular}{|l|l|l|}
-	\hline
-	variavel & media & desvio \\ \hline
-	y & 27.2125 & 10.3435290762  \\ \hline
-	$\hat{y}$ & 27.2125 & 9.79073222492 \\ \hline
-	\end{tabular}
-	\end{table}	
-	Coeficiente R=0.946556262645
-	
-	\section{Uma matriz de ejeção é usada para fabricação de hastes de alumínio. O diâmetro das hastes é uma característica crítica da qualidade. Abaixo, são mostrados valores de $\overline{X}$ e R para 20 amostras de cinco hastes cada. As especificações sobre as hastes são $0,5035\pm0,0010$ polegadas. Os valores apresentados na tabela são os três últimos dígitos das medidas; isto é, 34,2 é lido como 0,50342.}
-	\paragraph{}
-	\hspace{8pt}a) Estabeleça gráficos de controle $\overline{X}$ e R, revisando os limites de controle experimentais, admitindo que se possa encontrar causas atribuíveis.
-	
-	\hspace{8pt}b) Calcule a RCP (Razão da Capacidade do Processo).	
-	
-	\hspace{8pt}c) Qual a porcentagem de hastes defeituosas produzidas por este processo.	
-	
-	\begin{center}
-	$n=5$\\
-	$d2(n)=2.326$\\
-	$\bar{\bar{X}}=\sum{\bar{x_i}}=34.32$\\
-	$\bar{R}=\sum{R_i}=5.65$\\
-	Grafico de controle\\
-	$LSC=\bar{\bar{X}}+\frac{3}{d2(n)\sqrt{n}}\bar{R}=37.5789296835$\\
-	$LIC=\bar{\bar{X}}-\frac{3}{d2(n)\sqrt{n}}\bar{R}=31.0610703165$\\
-	Grafico R\\
-	$LSC=\bar{R}+\frac{3\sigma_w}{d2}\bar{R}=13.14$\\
-	$LIC=\bar{R}-\frac{3\sigma_w}{d2}\bar{R}=0$\\
-	$\sigma_0=\frac{\bar{R}}{d2(n)}=2.4290627687$\\
-	$RCP=\frac{LSE-LIE}{6\sigma_0}=1.37$\\
-	\end{center}
+    Equação: $9.5375+8.675x_1-2.675x_2$
+    \begin{table}[H]
+    \centering
+    \caption{Estatística de aproximação}
+    \label{tab:q5_est3}
+    \begin{tabular}{|l|l|l|}
+    \hline
+    variável & média & desvio \\ \hline
+    y & 27.2125 & 10.3435290762  \\ \hline
+    $\hat{y}$ & 27.2125 & 9.79073222492 \\ \hline
+    \end{tabular}
+    \end{table}    
+    Coeficiente R=0.946556262645
+    
+    \section{Uma matriz de ejeção é usada para fabricação de hastes de alumínio. O diâmetro das hastes é uma característica crítica da qualidade. Abaixo, são mostrados valores de $\overline{X}$ e R para 20 amostras de cinco hastes cada. As especificações sobre as hastes são $0,5035\pm0,0010$ polegadas. Os valores apresentados na tabela são os três últimos dígitos das medidas; isto é, 34,2 é lido como 0,50342.}
+    \paragraph{}
+    \hspace{8pt}a) Estabeleça gráficos de controle $\overline{X}$ e R, revisando os limites de controle experimentais, admitindo que se possa encontrar causas atribuíveis.
+    
+    \hspace{8pt}b) Calcule a RCP (Razão da Capacidade do Processo).    
+    
+    \hspace{8pt}c) Qual a porcentagem de hastes defeituosas produzidas por este processo.    
+    
+    \begin{center}
+    $n=5$\\
+    $d2(n)=2.326$\\
+    $\bar{\bar{X}}=\sum{\bar{x_i}}=34.32$\\
+    $\bar{R}=\sum{R_i}=5.65$\\
+    Grafico de controle\\
+    $LSC=\bar{\bar{X}}+\frac{3}{d2(n)\sqrt{n}}\bar{R}=37.5789296835$\\
+    $LIC=\bar{\bar{X}}-\frac{3}{d2(n)\sqrt{n}}\bar{R}=31.0610703165$\\
+    Grafico R\\
+    $LSC=\bar{R}+\frac{3\sigma_w}{d2}\bar{R}=13.14$\\
+    $LIC=\bar{R}-\frac{3\sigma_w}{d2}\bar{R}=0$\\
+    $\sigma_0=\frac{\bar{R}}{d2(n)}=2.4290627687$\\
+    $RCP=\frac{LSE-LIE}{6\sigma_0}=1.37$\\
+    \end{center}
 
-	\begin{figure}[H]
-	\centering
-	\begin{subfigure}{.5\textwidth}
-	\centering
-	\includegraphics[height=6cm]{images/q6_1.png}
-	\caption{controle}
-	\label{fig:criterio1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-	\centering
-	\includegraphics[height=6cm]{images/q6_2.png}
-	\caption{R}
-	\label{fig:criterio2}
-	\end{subfigure}
-	\caption{Graficos de controle e R}
-	\label{fig:criterios}
-	\end{figure}	
+    \begin{figure}[H]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[height=6cm]{images/q6_1.png}
+    \caption{controle}
+    \label{fig:criterio1}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[height=6cm]{images/q6_1.png}
+    \caption{R}
+    \label{fig:criterio2}
+    \end{subfigure}
+    \caption{Graficos de controle e R}
+    \label{fig:criterios}
+    \end{figure}    
 
-	A porcentagem de hastes defeituosas é $P(x<LIC)+P(x>LSC)$ que pode ser calculada pelo score z com $z=\frac{LIC-\bar{\bar{X}}}{\frac{\sigma}{\sqrt{n}}}~3$ pelo valor na tabela 0.0143938057603 como é simetrico a porcetagem de P(x>LSC) é igual assim a probabilidade de hastes defeituosas é de aproximadamente 0.028\%.
-	
-	
-	\section{Os dados seguintes representam o número de defeitos de solda observados em 24 amostras de cinco placas de circuitos impresso: 7, 6, 8, 10, 24, 6, 5, 4, 8, 11, 15, 8, 4, 16, 11, 12, 8, 6, 5, 9, 7, 14, 8, 21. Podemos concluir que o processo esteja sob controle usando o gráfico c? Se não, suponha que se possa encontrar causas atribuíveis e revise os limites de controle.}
-	\paragraph{}
-	\hspace{8pt}
-	
-	\begin{center}
-	$\bar{C}=\sum{C_i}=9.7$\\
-	$LSC=\bar{C}+3\sqrt{\bar{C}}=19.05$\\
-	$LIC=\bar{C}-3\sqrt{\bar{C}}=0.36$\\
-	\end{center}	
-	
-	\begin{figure}[H]
-	\centering \includegraphics[height=10cm]{images/q7.png}	
-	\caption{Grafico c}
-	\end{figure}
-	
-	Aparenta está sobre controle.
-		
-	\section{Cinco unidades idênticas são arranjadas em uma redundância ativa para formar um subsistema. As falhas das unidades são independentes, e pelo menos duas das unidades devem sobreviver 1000 horas para que o subsistema realize sua missão.}
-	\paragraph{}
-	\hspace{8pt}a) Se as unidades tem distribuição exponencial do tempo de falha, com taxa de falhas 0,002, qual é a confiabilidade do subsistema?
-	
-	\begin{center}
-	$\lambda=0.002$\\
-	$F(t)=1-e^{-\lambda t}$\\
-	$R(t)=1-F(t)=e^{-\lambda t}$\\
-	\end{center}	
-	
-	\hspace{8pt}Probabilidade de uma uinidade durar mais de 1000 horas é $R(1000)=0.1353$
-	
-	\hspace{8pt}Considerando $P(k)$ a probabilidade de sucesso. No sistema com 5 unidades a probabilidade de pelo menos duas não falharem é $P(k>2)=1-P(k=1)+P(k=0)$.
-	
-	\hspace{8pt}Como o sistema esta em redudancia é considerado que ele está em paralelo assim a probabilidade de todos falharem é $(1-R(1000))^5$ de apenas 1 falhar é $R(1000)(1-R(1000))^4*5$ no caso geral pela distribuição binimial $\binom{n}{k}(p)^k(1-p)^{n-k}$.
-	
-	\hspace{8pt}Portanto a confiabilidade do sistema é:
-	\begin{center}
-	$R(t)=P(k>2)=1-(P(k=1)+P(k=0))=1-((1-R(1000))^5+R(1000)(1-R(1000))^4*5)=0.138431685054$	
-	\end{center}
-	
-	\hspace{8pt}b) Qual é a confiabilidade se for exigida a sobrevivência de apenas uma das unidades?
-	
-	\hspace{8pt}Considerando agora que pra o sistema funcionar basta uma unidade durar mais de 1000 horas.
-	\begin{center}
-	$R(t)=P(k>1)=1-P(k=0)=1-(1-R(1000))^5=0.516675635853$
-	\end{center}	
-	
-		\section{Para um teste sem reposição que termina após 200 horas de operação, nota-se que as falhas ocorrem nos seguintes tempos: 9, 21, 40,55 e 85 horas. Supõe-se que as unidades tenham uma distribuição exponencial do tempo de falha, com 100 unidades em teste incialmente.}
-	\paragraph{}
-	\hspace{8pt}a) Estime o tempo médio de falha.
-	
-	\hspace{8pt}Estimando o parametro $\lambda$ para a distribuição expodencial:
-	
-	\begin{center}		
-	$\lambda=\frac{1}{\sum{x_i}}=0.023$
-	\end{center}
-	
-	\hspace{8pt}b) Construa um limite de confiança inferior a 95\% de confiança para o tempo médio de falha.
-	
-	Calculando um intervalo bilateral:
-	\begin{center}
-	$\lambda=0.023$\\
-	$\alpha=0.05$\\
-	$P(x<T)= 1-e^{\lambda t}$\\
-	$P(x<T1)=\alpha/2$ e $P(x>T2)=1-\alpha/2$
-	\end{center}
-	Resolvendo para T1 e T2 encontramos $T1=1.06$ e $T2=154.93$
-	
-	\newpage
-	\bibliographystyle{ieeetr}
-	\bibliography{projeto3}
-	
-	\newpage
-	
+    A porcentagem de hastes defeituosas é $P(x<LIC)+P(x>LSC)$ que pode ser calculada pelo score z com $z=\frac{LIC-\bar{\bar{X}}}{\frac{\sigma}{\sqrt{n}}}~3$ pelo valor na tabela 0.0143938057603 como é simetrico a porcetagem de P(x>LSC) é igual assim a probabilidade de hastes defeituosas é de aproximadamente 0.028\%.
+    
+    
+    \section{Os dados seguintes representam o número de defeitos de solda observados em 24 amostras de cinco placas de circuitos impresso: 7, 6, 8, 10, 24, 6, 5, 4, 8, 11, 15, 8, 4, 16, 11, 12, 8, 6, 5, 9, 7, 14, 8, 21. Podemos concluir que o processo esteja sob controle usando o gráfico c? Se não, suponha que se possa encontrar causas atribuíveis e revise os limites de controle.}
+    \paragraph{}
+    \hspace{8pt}
+    
+    \begin{center}
+    $\bar{C}=\sum{C_i}=9.7$\\
+    $LSC=\bar{C}+3\sqrt{\bar{C}}=19.05$\\
+    $LIC=\bar{C}-3\sqrt{\bar{C}}=0.36$\\
+    \end{center}    
+    
+    \begin{figure}[H]
+    \centering \includegraphics[height=10cm]{images/q7.png}    
+    \caption{Grafico c}
+    \end{figure}
+    
+    Aparenta está sobre controle.
+        
+    \section{Cinco unidades idênticas são arranjadas em uma redundância ativa para formar um subsistema. As falhas das unidades são independentes, e pelo menos duas das unidades devem sobreviver 1000 horas para que o subsistema realize sua missão.}
+    \paragraph{}
+    \hspace{8pt}a) Se as unidades tem distribuição exponencial do tempo de falha, com taxa de falhas 0,002, qual é a confiabilidade do subsistema?
+    
+    \begin{center}
+    $\lambda=0.002$\\
+    $F(t)=1-e^{-\lambda t}$\\
+    $R(t)=1-F(t)=e^{-\lambda t}$\\
+    \end{center}    
+    
+    \hspace{8pt}Probabilidade de uma uinidade durar mais de 1000 horas é $R(1000)=0.1353$
+    
+    \hspace{8pt}Considerando $P(k)$ a probabilidade de sucesso. No sistema com 5 unidades a probabilidade de pelo menos duas não falharem é $P(k>2)=1-P(k=1)+P(k=0)$.
+    
+    \hspace{8pt}Como o sistema esta em redudancia é considerado que ele está em paralelo assim a probabilidade de todos falharem é $(1-R(1000))^5$ de apenas 1 falhar é $R(1000)(1-R(1000))^4*5$ no caso geral pela distribuição binimial $\binom{n}{k}(p)^k(1-p)^{n-k}$.
+    
+    \hspace{8pt}Portanto a confiabilidade do sistema é:
+    \begin{center}
+    $R(t)=P(k>2)=1-(P(k=1)+P(k=0))=1-((1-R(1000))^5+R(1000)(1-R(1000))^4*5)=0.138431685054$    
+    \end{center}
+    
+    \hspace{8pt}b) Qual é a confiabilidade se for exigida a sobrevivência de apenas uma das unidades?
+    
+    \hspace{8pt}Considerando agora que pra o sistema funcionar basta uma unidade durar mais de 1000 horas.
+    \begin{center}
+    $R(t)=P(k>1)=1-P(k=0)=1-(1-R(1000))^5=0.516675635853$
+    \end{center}    
+    
+        \section{Para um teste sem reposição que termina após 200 horas de operação, nota-se que as falhas ocorrem nos seguintes tempos: 9, 21, 40,55 e 85 horas. Supõe-se que as unidades tenham uma distribuição exponencial do tempo de falha, com 100 unidades em teste incialmente.}
+    \paragraph{}
+    \hspace{8pt}a) Estime o tempo médio de falha.
+    
+    \hspace{8pt}Estimando o parametro $\lambda$ para a distribuição expodencial:
+    
+    \begin{center}        
+    $\lambda=\frac{1}{\sum{x_i}}=0.023$
+    \end{center}
+    
+    \hspace{8pt}b) Construa um limite de confiança inferior a 95\% de confiança para o tempo médio de falha.
+    
+    Calculando um intervalo bilateral:
+    \begin{center}
+    $\lambda=0.023$\\
+    $\alpha=0.05$\\
+    $P(x<T)= 1-e^{\lambda t}$\\
+    $P(x<T1)=\alpha/2$ e $P(x>T2)=1-\alpha/2$
+    \end{center}
+    Resolvendo para T1 e T2 encontramos $T1=1.06$ e $T2=154.93$
+    
+    \newpage
+    \bibliographystyle{ieeetr}
+    \bibliography{projeto3}
+    
+    \newpage
+    
 \end{document}
