@@ -347,15 +347,34 @@
 	$d2(n)=2.326$\\
 	$\bar{\bar{X}}=\sum{\bar{x_i}}=34.32$\\
 	$\bar{R}=\sum{R_i}=5.65$\\
+	Grafico de controle\\
 	$LSC=\bar{\bar{X}}+\frac{3}{d2(n)\sqrt{n}}\bar{R}=37.5789296835$\\
 	$LIC=\bar{\bar{X}}-\frac{3}{d2(n)\sqrt{n}}\bar{R}=31.0610703165$\\
+	Grafico R\\
+	$LSC=\bar{R}+\frac{3\sigma_w}{d2}\bar{R}=13.14$\\
+	$LIC=\bar{R}-\frac{3\sigma_w}{d2}\bar{R}=0$\\
 	$\sigma_0=\frac{\bar{R}}{d2(n)}=2.4290627687$\\
 	$RCP=\frac{LSE-LIE}{6\sigma_0}=1.37$\\
 	\end{center}
+
 	\begin{figure}[H]
-	\centering \includegraphics[height=10cm]{images/q6_1.png}	
-	\caption{Grafico controle}
-	\end{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+	\centering
+	\includegraphics[height=6cm]{images/q6_1.png}
+	\caption{controle}
+	\label{fig:criterio1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+	\centering
+	\includegraphics[height=6cm]{images/q6_2.png}
+	\caption{R}
+	\label{fig:criterio2}
+	\end{subfigure}
+	\caption{Graficos de controle e R}
+	\label{fig:criterios}
+	\end{figure}	
+
 	A porcentagem de hastes defeituosas é $P(x<LIC)+P(x>LSC)$ que pode ser calculada pelo score z com $z=\frac{LIC-\bar{\bar{X}}}{\frac{\sigma}{\sqrt{n}}}~3$ pelo valor na tabela 0.0143938057603 como é simetrico a porcetagem de P(x>LSC) é igual assim a probabilidade de hastes defeituosas é de aproximadamente 0.028\%.
 	
 	
