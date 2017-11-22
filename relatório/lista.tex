@@ -345,25 +345,25 @@
     
     \section{Uma matriz de ejeção é usada para fabricação de hastes de alumínio. O diâmetro das hastes é uma característica crítica da qualidade. Abaixo, são mostrados valores de $\overline{X}$ e R para 20 amostras de cinco hastes cada. As especificações sobre as hastes são $0,5035\pm0,0010$ polegadas. Os valores apresentados na tabela são os três últimos dígitos das medidas; isto é, 34,2 é lido como 0,50342.}
     \paragraph{}
-    \hspace{8pt}a) Estabeleça gráficos de controle $\overline{X}$ e R, revisando os limites de controle experimentais, admitindo que se possa encontrar causas atribuíveis.
-    
-    \hspace{8pt}b) Calcule a RCP (Razão da Capacidade do Processo).    
-    
-    \hspace{8pt}c) Qual a porcentagem de hastes defeituosas produzidas por este processo.    
+    \hspace{8pt}a) Estabeleça gráficos de controle $\overline{X}$ e R, revisando os limites de controle experimentais, admitindo que se possa encontrar causas atribuíveis.    
     
     \begin{center}
     $n=5$\\
     $d2(n)=2.326$\\
     $\bar{\bar{X}}=\sum{\bar{x_i}}=34.32$\\
     $\bar{R}=\sum{R_i}=5.65$\\
-    Grafico de controle\\
+    \end{center}
+    
+    \hspace{8pt}Gráfico de controle:
+    \begin{center}
     $LSC=\bar{\bar{X}}+\frac{3}{d2(n)\sqrt{n}}\bar{R}=37.5789296835$\\
     $LIC=\bar{\bar{X}}-\frac{3}{d2(n)\sqrt{n}}\bar{R}=31.0610703165$\\
-    Grafico R\\
+    \end{center}
+    
+    \hspace{8pt}Gráfico R:
+    \begin{center}
     $LSC=\bar{R}+\frac{3\sigma_w}{d2}\bar{R}=13.14$\\
     $LIC=\bar{R}-\frac{3\sigma_w}{d2}\bar{R}=0$\\
-    $\sigma_0=\frac{\bar{R}}{d2(n)}=2.4290627687$\\
-    $RCP=\frac{LSE-LIE}{6\sigma_0}=1.37$\\
     \end{center}
 
     \begin{figure}[H]
@@ -382,15 +382,23 @@
     \end{subfigure}
     \caption{Graficos de controle e R}
     \label{fig:criterios}
-    \end{figure}    
-
-    A porcentagem de hastes defeituosas é $P(x<LIC)+P(x>LSC)$ que pode ser calculada pelo score z com $z=\frac{LIC-\bar{\bar{X}}}{\frac{\sigma}{\sqrt{n}}}~3$ pelo valor na tabela 0.0143938057603 como é simetrico a porcetagem de P(x>LSC) é igual assim a probabilidade de hastes defeituosas é de aproximadamente 0.028\%.
+    \end{figure}
+    \newpage
+    \hspace{8pt}b) Calcule a RCP (Razão da Capacidade do Processo).    
+    
+    \begin{center}
+    $\sigma_0=\frac{\bar{R}}{d2(n)}=2.4290627687$\\
+    $RCP=\frac{LSE-LIE}{6\sigma_0}=1.37$\\
+    \end{center} 
+    
+    \hspace{8pt}c) Qual a porcentagem de hastes defeituosas produzidas por este processo.\\
+    
+    \hspace{8pt}A porcentagem de hastes defeituosas é $P(x<LIC)+P(x>LSC)$ que pode ser calculada pelo score z com $z=\frac{LIC-\bar{\bar{X}}}{\frac{\sigma}{\sqrt{n}}}~3$ pelo valor na tabela 0.0143938057603 como é simetrico a porcetagem de P(x>LSC) é igual assim a probabilidade de hastes defeituosas é de aproximadamente 0.028\%.
     
     
     \section{Os dados seguintes representam o número de defeitos de solda observados em 24 amostras de cinco placas de circuitos impresso: 7, 6, 8, 10, 24, 6, 5, 4, 8, 11, 15, 8, 4, 16, 11, 12, 8, 6, 5, 9, 7, 14, 8, 21. Podemos concluir que o processo esteja sob controle usando o gráfico c? Se não, suponha que se possa encontrar causas atribuíveis e revise os limites de controle.}
     \paragraph{}
-    \hspace{8pt}
-    
+    \hspace{8pt}Calculando os limites:    
     \begin{center}
     $\bar{C}=\sum{C_i}=9.7$\\
     $LSC=\bar{C}+3\sqrt{\bar{C}}=19.05$\\
@@ -398,7 +406,7 @@
     \end{center}    
     
     \begin{figure}[H]
-    \centering \includegraphics[height=10cm]{images/q7.png}    
+    \centering \includegraphics[height=7cm]{images/q7.png}    
     \caption{Grafico c}
     \end{figure}
     
@@ -414,13 +422,13 @@
     $R(t)=1-F(t)=e^{-\lambda t}$\\
     \end{center}    
     
-    \hspace{8pt}Probabilidade de uma uinidade durar mais de 1000 horas é $R(1000)=0.1353$
+    \hspace{8pt}Probabilidade de uma unidade durar mais de 1000 horas é $R(1000)=0.1353$
     
-    \hspace{8pt}Considerando $P(k)$ a probabilidade de sucesso. No sistema com 5 unidades a probabilidade de pelo menos duas não falharem é $P(k>2)=1-P(k=1)+P(k=0)$.
+    \hspace{8pt}Considerando $P(k)$ a probabilidade de sucesso, no sistema com 5 unidades a probabilidade de pelo menos duas não falharem é $P(k>2)=1-P(k=1)+P(k=0)$.
     
-    \hspace{8pt}Como o sistema esta em redudancia é considerado que ele está em paralelo assim a probabilidade de todos falharem é $(1-R(1000))^5$ de apenas 1 falhar é $R(1000)(1-R(1000))^4*5$ no caso geral pela distribuição binimial $\binom{n}{k}(p)^k(1-p)^{n-k}$.
+    \hspace{8pt}Como o sistema está em redudância, é considerado que ele está em paralelo assim a probabilidade de todos falharem é $(1-R(1000))^5$ e de apenas 1 falhar é $R(1000)(1-R(1000))^4*5$, no caso geral pela distribuição binimial $\binom{n}{k}(p)^k(1-p)^{n-k}$.
     
-    \hspace{8pt}Portanto a confiabilidade do sistema é:
+    \hspace{8pt}Portanto, a confiabilidade do sistema é:
     \begin{center}
     $R(t)=P(k>2)=1-(P(k=1)+P(k=0))=1-((1-R(1000))^5+R(1000)(1-R(1000))^4*5)=0.138431685054$    
     \end{center}
@@ -430,17 +438,21 @@
     \hspace{8pt}Considerando agora que pra o sistema funcionar basta uma unidade durar mais de 1000 horas.
     \begin{center}
     $R(t)=P(k>1)=1-P(k=0)=1-(1-R(1000))^5=0.516675635853$
-    \end{center}    
+    \end{center}
+    
+    \hspace{8pt}Logo, a confiabilidade é de 52\%.
     
         \section{Para um teste sem reposição que termina após 200 horas de operação, nota-se que as falhas ocorrem nos seguintes tempos: 9, 21, 40,55 e 85 horas. Supõe-se que as unidades tenham uma distribuição exponencial do tempo de falha, com 100 unidades em teste incialmente.}
     \paragraph{}
     \hspace{8pt}a) Estime o tempo médio de falha.
     
-    \hspace{8pt}Estimando o parametro $\lambda$ para a distribuição expodencial:
+    \hspace{8pt}Estimando o parâmetro $\lambda$ para a distribuição exponencial:
     
     \begin{center}        
     $\lambda=\frac{1}{\sum{x_i}}=0.023$
     \end{center}
+    
+    \hspace{8pt}Então, o tempo média de falha é $\frac{1}{\lambda}=43.5$.\\
     
     \hspace{8pt}b) Construa um limite de confiança inferior a 95\% de confiança para o tempo médio de falha.
     
@@ -451,7 +463,7 @@
     $P(x<T)= 1-e^{\lambda t}$\\
     $P(x<T1)=\alpha/2$ e $P(x>T2)=1-\alpha/2$
     \end{center}
-    Resolvendo para T1 e T2 encontramos $T1=1.06$ e $T2=154.93$
+    Resolvendo para T1 e T2 encontramos $T1=1.06$ e $T2=154.93$.
     
     \newpage
     \bibliographystyle{ieeetr}
