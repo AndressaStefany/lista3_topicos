@@ -53,23 +53,31 @@
 	
 	\large
 	\newpage
-	\section{Considere o processo de identificação de aglomerados (clusters) com base em uma técnica hierárquica aglomerativa. Neste problema considere o método de Ward resumido abaixo. Considere também dois critérios para parada do processo aglomerativo no dendograma e identificação do número de aglomerados. O critério $R_2$ e o critério Pseudo $T_2$.Construa dendondograma e indique o ponto de corte ou de parada determinado com isto os clusters ou aglomerados.}
+	\section{Considere o processo de identificação de aglomerados (clusters) com base em uma técnica hierárquica aglomerativa. Neste problema considere o método de Ward resumido abaixo. Considere também dois critérios para parada do processo aglomerativo no dendograma e identificação do número de aglomerados. O critério $R_2$ e o critério Pseudo $T_2$. Construa dendondograma e indique o ponto de corte ou de parada determinado com isto os clusters ou aglomerados.}
 	\paragraph{}
-	\hspace{8pt}É considerando n=20.\\
+	\hspace{8pt}- Método de Ward\\
 	
-	\hspace{8pt}Achando o desvio padrão:
-	\begin{center}
-	\hspace{8pt}$\sigma^2=\frac{s_1^2 + s_2^2}{2}=\frac{10,7^2 + 15,4^2}{2}=175,825$\\
-	\end{center}
-	\hspace{8pt}Equação de conversão da t-Student da tabela pra...
-	\begin{center}
-	\hspace{8pt}$t_{t-Student}=\frac{x-(\overline{x}_1-\overline{x}_2)}{\sqrt[]{\frac{2\sigma^2}{n}}}=\frac{x-4,5}{4,193}$\\
-	\end{center}
-	\hspace{8pt}Temos que $\alpha=0,05$ e que o grau de liberdade é $2*n-2 = 38$, utilizando a distribuição t-Student, o valor tabelado encontrado é 2,024. Substituindo:
-	\begin{center}
-	\hspace{8pt}$2,024=\frac{x-4,5}{4,193}=>x'=-3,987$ e $x''=12,987$\\
-	\end{center}
-	\hspace{8pt}Onde $x'$ e $x''$ são os limites do intervalo de confiança.
+	\hspace{8pt}Considerando que inicialmente tudo é um único aglomerado.
+	
+	\hspace{8pt}Para o cálculo da similaridade, foi utilizado a distância Euclidiana ao quadrado entre os conglomerados	 formados, e assim, juntando os aglomerados de menor distância.
+	
+	\hspace{8pt}Além disso, há um critério de parada $R^2$, o qual foi calculado em função do número de passos, observe a figura abaixo:
+	\begin{figure}[h]
+	\centering \includegraphics[height=7cm]{images/q1_R.png}	
+	\caption{Critério $R^2$}
+	\end{figure}
+	\newpage
+	\hspace{8pt}Enquanto que o critério do Pseudo $T^2$ se comportou da seguinte forma:
+	\begin{figure}[h]
+	\centering \includegraphics[height=7cm]{images/q1_T.png}	
+	\caption{Critério do Pseudo $T^2$}
+	\end{figure}
+	
+	\hspace{8pt}E os clusters ficaram com a seguinte configuração:
+	\begin{figure}[h]
+	\centering \includegraphics[height=7cm]{images/q1_2.png}	
+	\caption{Clusters}
+	\end{figure}
 		
 	\section{Extraem-se amostras aleatórias de tamanho $n_1=20$ e $n_2=15$ de duas populações normais independentes. As médias e variâncias amostrais são $\overline{x}_1=510$, $s_1^2=20$, $\overline{x}_2=620$, $s_2^2=30$. Supondo que $\sigma_1^2 \neq \sigma_2^2$, construa:}
 	\paragraph{}
