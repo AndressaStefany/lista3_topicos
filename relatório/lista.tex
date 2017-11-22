@@ -1,0 +1,189 @@
+\documentclass{article}
+\usepackage[portuguese]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage[english,num,USenglish]{isodate}
+\usepackage{subcaption}
+
+\usepackage{mcode}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\usepackage{fullpage}
+
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+\usepackage[hidelinks]{hyperref}
+
+\begin{document}
+	\begin{titlepage}
+	\centering
+	\fontsize{12}{18}
+	\fontfamily{ptm}
+	\selectfont
+		UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE\\
+		DEPARTAMENTO DE COMPUTAÇÃO E AUTOMAÇÃO\\
+		TÓPICOS ESPECIAIS EM ENGENHARIA DE COMPUTAÇÃO\\
+		PROFESSOR ADRIÃO DUARTE DORIA NETO\\[20 mm]
+		ANDRESSA STÉFANY S. DE OLIVEIRA - 20160154101\\
+		VITOR RAMOS GOMES DA SILVA - 20160154415\\[50 mm]
+	\fontsize{18}{18}	
+	\selectfont
+		3ª LISTA DE EXERCÍCIOS
+	\vfill
+	\fontsize{12}{18}
+	\selectfont
+	\printdate{2017-11-23}
+	\end{titlepage}
+	
+	\large
+	\newpage
+	\section{Considere o processo de identificação de aglomerados (clusters) com base em uma técnica hierárquica aglomerativa. Neste problema considere o método de Ward resumido abaixo. Considere também dois critérios para parada do processo aglomerativo no dendograma e identificação do número de aglomerados. O critério $R_2$ e o critério Pseudo $T_2$.Construa dendondograma e indique o ponto de corte ou de parada determinado com isto os clusters ou aglomerados.}
+	\paragraph{}
+	\hspace{8pt}É considerando n=20.\\
+	
+	\hspace{8pt}Achando o desvio padrão:
+	\begin{center}
+	\hspace{8pt}$\sigma^2=\frac{s_1^2 + s_2^2}{2}=\frac{10,7^2 + 15,4^2}{2}=175,825$\\
+	\end{center}
+	\hspace{8pt}Equação de conversão da t-Student da tabela pra...
+	\begin{center}
+	\hspace{8pt}$t_{t-Student}=\frac{x-(\overline{x}_1-\overline{x}_2)}{\sqrt[]{\frac{2\sigma^2}{n}}}=\frac{x-4,5}{4,193}$\\
+	\end{center}
+	\hspace{8pt}Temos que $\alpha=0,05$ e que o grau de liberdade é $2*n-2 = 38$, utilizando a distribuição t-Student, o valor tabelado encontrado é 2,024. Substituindo:
+	\begin{center}
+	\hspace{8pt}$2,024=\frac{x-4,5}{4,193}=>x'=-3,987$ e $x''=12,987$\\
+	\end{center}
+	\hspace{8pt}Onde $x'$ e $x''$ são os limites do intervalo de confiança.
+		
+	\section{Extraem-se amostras aleatórias de tamanho $n_1=20$ e $n_2=15$ de duas populações normais independentes. As médias e variâncias amostrais são $\overline{x}_1=510$, $s_1^2=20$, $\overline{x}_2=620$, $s_2^2=30$. Supondo que $\sigma_1^2 \neq \sigma_2^2$, construa:}
+	\paragraph{}
+	\hspace{8pt} a) um intervalo de confiança bilateral de 95\% para $\mu_1 - \mu_2$.\\
+	
+	\hspace{8pt}Como as variâncias populacionais são desconhecidas, será usado as variâncias amostrais em seu lugar:
+	\begin{center}
+	\hspace{8pt}$\sigma=\sqrt[]{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}= \sqrt[]{\frac{20}{20}+\frac{30}{15}}=\sqrt[]{3}$\\
+	\end{center}
+	\hspace{8pt}Equação de conversão da t-Student da tabela pra...
+	\begin{center}
+	\hspace{8pt}$t_{t-Student}=\frac{x-(\overline{x}_1-\overline{x}_2)}{\sigma}=\frac{x-(-110)}{\sqrt[]{3}}$\\
+	\end{center}
+	\hspace{8pt}Temos que $\alpha=0,05$ e que o grau de liberdade é $n_1+n_2-2 = 33$, utilizando a distribuição t-Student, o valor tabelado encontrado é 2,03, respectivamente. Substituindo:
+	\begin{center}
+	\hspace{8pt}$2,03=\frac{x-(-110)}{\sqrt[]{3}} => x'=-113,51$ e $x''=-106,48$\\	
+	\end{center}
+	
+	\hspace{8pt}Onde $x'$ e $x''$ são os limites do intervalo de confiança.\\\\
+	
+	\hspace{8pt}b)	um intervalo de confiança bilateral de 95\% para razão das variâncias $\sigma_1^2 / \sigma_2^2$.\\
+	
+	\hspace{8pt}A expressão F da distribuição Fisher de Snedecor é definida por:
+	\begin{center}
+	\hspace{8pt}$F=\frac{s_1^2}{s_2^2}=0,6667$
+	\end{center}	
+	
+	\hspace{8pt}Temos que $\alpha=0,05$ e que o grau de liberdade é $n-1$, então, $n_1-1=19$ e $n_2-1=14$. Encontramos:
+	
+	\begin{center}
+	\hspace{8pt}$F(19,14,1-\frac{\alpha}{2})=0,37$ e 
+	\hspace{8pt}$F(19,14,\frac{\alpha}{2})=2,86$
+	\end{center}
+	\begin{center}
+	\hspace{8pt}$\frac{s_1^2}{s_2^2} \frac{1}{F_{1-\frac{\alpha}{2}} } > \frac{\sigma_1^2}{\sigma_2^2} > \frac{s_1^2}{s_2^2} \frac{1}{F_{\frac{\alpha}{2}} }$
+	\end{center}
+	\begin{center}
+	\hspace{8pt}$0,6667 \frac{1}{0,37} > \frac{\sigma_1^2}{\sigma_2^2} > 0,6667 \frac{1}{2,86}$
+	\end{center}
+	\begin{center}
+	\hspace{8pt}$1,80 > \frac{\sigma_1^2}{\sigma_2^2} > 0,23$
+	\end{center}
+	
+	\section{A vida média de uma amostra de 300 lâmpadas florescente fabricadas por uma determinada companhia é de 1660 horas, com desvio padrão de 90 horas. Se $\mu$ é a vida média de todas as lâmpadas fabricadas pela companhia, teste a hipótese $\mu=1690$ horas contra a hipótese alternativa $\mu\neq1690$ horas, utilizando um nível de significância de (a)0,05 e (b) 0,01.}
+	\paragraph{}
+	\hspace{8pt}Temos $n=300$, $\overline{x}=1660$ horas e $\sigma=90$ horas.
+	\begin{center}
+	\hspace{8pt}$H_0->\mu=1690$\\
+	
+	\hspace{8pt}$H_1->\mu\neq1690$\\
+	\end{center}
+	\hspace{8pt}a) 0,05:\\
+	
+	\hspace{8pt}Equação de conversão:
+	\begin{center}
+	$\frac{x-\mu}{\sigma/\sqrt[]{n}} = \frac{x-1690}{3\sqrt[]{3}}$
+	\end{center}
+	
+	\hspace{8pt}Testando a média 1660:
+	\begin{center}
+	$\frac{1660-1690}{3\sqrt[]{3}}=5,7$
+	\end{center}
+	
+	\hspace{8pt}O resultado ficou fora do intervalo da distribuição normal, sendo eles  $-1.960<z<1.960$. Provavelmente, a hipótese $H_1$ é a correta, ou seja, $\mu\neq1690$.\\\\
+	
+	\hspace{8pt}b) 0,01:\\
+	
+	\hspace{8pt}Com o intervalo de confiança de 99\%, o intervalo da distribuição normal é $-2.576<z<2.576$. Da mesma forma, o valor encontrado no item anterior (5,7) não faz parte desse intervalo, logo, a hipótese $H_1$ é a correta.\\
+	
+	\section{Uma máquina deve produzir em série uma determinada peça mecânica com espessura média de 0,05 pol. A fim de verificar se a máquina no decorrer do tempo de operação ainda está em boas condições, toma-se uma amostra de 20 peças, cujas as espessuras médias são de 0,06 pol., com desvio padrão de 0,009 pol. Usando o teste t-Student verifique a hipótese da máquina ainda está em boas condições, utilizando um nível de significância (a) de 0,05 (b) de 0,01.}
+	\paragraph{}
+	\hspace{8pt}Dados fornecidos: $n=20$, $\mu=0,05$, $\overline{x}=0,06$ e $\sigma=0,009$.
+	\begin{center}
+	\hspace{8pt}$H_0->\overline{x}=0,06$\\
+	
+	\hspace{8pt}$H_1->\overline{x}\neq0,06$\\
+	\end{center}
+	
+	\hspace{8pt}Além disso, o grau de liberdade é 19.
+	
+	\hspace{8pt}Equação de conversão:
+	\begin{center}
+	$T=\frac{x-\mu}{\sigma/\sqrt[]{n}} = \frac{x-0,05}{0,0020}$
+	\end{center}
+	
+	\hspace{8pt}Testando a média 0,06:
+	\begin{center}
+	$T=\frac{0,06-0,05}{0,0020}=5$
+	\end{center}
+	\hspace{8pt}a) 0,05:\\
+	
+	\hspace{8pt}Para o intervalo de confiança de 95\% o intervalo da t-Student é $-2.093 < T < 2.093$ e o T calculado não está nesse intervalo, logo, a hipótese da máquina estar em boas condições é rejeitada, ou seja,$H_1$ é aceita e $H_0$ rejeitada.\\
+	
+	\hspace{8pt}b) 0,01:\\
+	
+	\hspace{8pt}Para o intervalo de confiança de 99\% o intervalo da distribuição é $-2.861 < T < 2.861$, assim como na letra (a), a hipótese $H_1$ é aceita e $H_0$ rejeitada, pois o T calculado não está no intervalo da t-Student.\\
+	
+	\section{Um instrutor tem duas turmas, A e B, para determinada disciplina. A turma A tem 20 estudantes, e a turma B 25 estudantes. Em um mesmo exame, embora não tivesse havido diferenças significativa entre as notas médias, a turma A acusou desvio padrão de 8, enquanto a turma B, o desvio padrão foi de 10. Podemos concluir que a variabilidade da turma B seja maior do que a variabilidade da turma A, a nível de: (a) 0,01 e (b)0,05?}
+	\paragraph{}
+	\hspace{8pt}Dados fornecidos: $n_a=20$, $s_a=8$, $n_b=25$, $s_b=10$ e $\mu_a = \mu_b$.
+	\begin{center}
+	\hspace{8pt}$H_0:\sigma_b>\sigma_a$\\
+	\end{center}
+	
+	\hspace{8pt}a) 0,01:\\
+	\hspace{8pt}b) 0,05:\\
+	
+	\section{Seja X uma variável aleatória com distribuição normal com média $\mu$ e variância $\sigma^2$.Determine os estimadores de máxima verossilhança dos parâmetros $\mu$ e $\sigma^2$.}
+
+	
+	\newpage
+	\bibliographystyle{ieeetr}
+	\bibliography{projeto3}
+	
+	\newpage
+	
+\end{document}
