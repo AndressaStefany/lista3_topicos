@@ -126,9 +126,14 @@ clusters, media, desv= load_file('paises.txt')
 R, PST2= computeClusters(clusters, media)
 
 x_= np.arange(len(R))+1
-plt.plot(x_, R)
-plt.plot(x_, PST2)
+plt.plot(x_, R, label='R')
 plt.xticks(x_)
+plt.legend()
+plt.show()
+plt.plot(x_, PST2, label= 'T')
+plt.legend()
+plt.show()
 
 scypi_ver()
+plt.title("Dendograma")
 plt.show()
